@@ -1,0 +1,166 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.container{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    color: #ffff;
+}
+
+.background{
+    position: absolute;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(90deg, rgba(2,0,.6,1) 0%, rgb(19, 138, 162) 40% 30%, rgb(2, 2, 36) 60%);
+    background-size: 200% 100%;
+    animation: 7s moveBackground ease-in-out infinite;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.main-content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    padding: 2em;
+    gap: 5em;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/*-- Onboarding style --*/
+.onboarding{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 1em;
+}
+
+h1{
+    font-size: 7em;
+    margin-top: 1.2em;
+}
+
+form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: .5em;
+    padding: 1em;
+    font-size: 4em;
+    margin-top: -0.4em;
+}
+
+form input, button{
+    background-color: #010134c2;
+    color: #ffff;
+}
+
+form input{
+    width: 55%;
+    border-radius: 5em;
+    padding: 1.3em;
+    border: 1px solid white;
+}
+
+button{
+  padding: .5em;
+  border-radius: .5em;
+  width: 25%;
+  margin-top: -1.5em;
+  font-size: 1.1em;
+  cursor: pointer;
+  background: #010134be;
+  border: none;
+  position: relative;
+  isolation: isolate;
+}
+
+button::before{
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  border-radius: 0.5em;
+  background: conic-gradient(from 0deg, #086f84, #090979, #00d4ff);
+  animation: rotate-colors 3s linear infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: .2em;
+}
+
+/*-- End of Onboarding style --*/
+
+/*-- Play Button style --*/
+
+.volume-control {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.7);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+#volumeSlider {
+  width: 100px;
+  cursor: pointer;
+}
+
+/*-- End of Play Butoon Style --*/
+
+
+/*-- Animations --*/
+@keyframes rotate-colors {
+  from {
+    --angle: 0deg;
+    background: conic-gradient(
+      from var(--angle, 0deg),
+      #00d4ff,
+      #090979,
+      #00d4ff
+    );
+  }
+  to {
+    --angle: 360deg;
+    background: conic-gradient(from var(--angle, 0deg), #00d4ff, #090979, #00d4ff);
+  }
+}
+
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+
+@keyframes moveBackground{
+    0%{
+        background-position: 0% 0%;
+    }
+    50%{
+        background-position: 30% 20%;
+    }
+    100%{
+        background-position: 0% 0%;
+    }
+}
+/*-- End of Animations --*/
