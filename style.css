@@ -46,7 +46,7 @@
 
 /*-- Onboarding style --*/
 .onboarding {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -119,7 +119,7 @@ button::before {
 
 /*-- Welcome Page Style --*/
 .welcome-page {
-  display: none;
+  display: block;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -142,6 +142,7 @@ button::before {
   margin: 1em 0;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 1.5em;
 }
 
 .test-opt li, .level-opt li {
@@ -260,11 +261,17 @@ button::before {
     gap: clamp(1em, 5vw, 2em);
   }
 
+  /*-- Welcome Page --*/
   form input {
     width: 95%;
   }
 
   .test-opt, .level-opt {
     flex-direction: column;
+    align-items: center;
+  }
+
+  .opt{
+    width: 50%;
   }
 }
