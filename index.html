@@ -3,60 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <title>Brain Spark Quiz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    <title>Brain-Spark-Quiz</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <div class="background"></div>
 
-        <div class="main-content">
-            <!-- Onboarding -->
-            <div class="onboarding" id="onboarding">
+        <!-- Onboarding Page -->
+        <div class="page" id="onboardingPage">
+            <div class="onboarding-content">
                 <h1>Brain Spark Quiz</h1>
+                <div class="input-container">
+                    <input type="text" id="userNameInput" placeholder="Enter your name">
+                    <p id="errorMessage" class="error-message"></p>
+                </div>
+                <button onclick="displayWelcomePage(nameInput)" id="startButton">Get Started</button>
+            </div>
+        </div>
 
-                <form id="nameForm">
-                    <label for="nameInput">Ready to get started?</label>
-                    <input type="text" id="nameInput" placeholder="Enter your name here">
+        <!-- Welcome Page -->
+        <div class="page" id="welcomePage">
+            <div class="welcome-content">
+                <h2>Hello, <span id="displayUserName"></span>!</h2>
+                <h1>Test Your Knowledge</h1>
                 
-                    <div class="error-message" id="errorMessage"></div>
-                </form>
+                <div class="selection-section">
+                    <h3>Choose a topic:</h3>
+                    <div class="options" id="topicOptions">
+                        <div class="option" data-topic="html">HTML</div>
+                        <div class="option" data-topic="css">CSS</div>
+                        <div class="option" data-topic="javascript">JavaScript</div>
+                    </div>
+                </div>
 
-                <button id="startButton">Get started</button>
+                <div class="selection-section" id="levelSection">
+                    <h3>Choose difficulty level:</h3>
+                    <div class="options" id="levelOptions">
+                        <div class="option" data-level="beginner">Beginner</div>
+                        <div class="option" data-level="intermediate">Intermediate</div>
+                        <div class="option" data-level="advanced">Advanced</div>
+                    </div>
+                </div>
+
+                <button id="startQuizButton" class="main-button">Start Quiz</button>
+            </div>
+        </div>
+
+        <!-- Quiz Page -->
+        <div class="page" id="quizPage">
+            <div class="quiz-header">
+                <div class="quiz-info">
+                    <span id="quizTopicDisplay">HTML</span>
+                    <span id="quizLevelDisplay">Beginner</span>
+                </div>
+                <div class="quiz-progress">
+                    Question <span id="currentQuestionNumber">1</span>/<span id="totalQuestions">10</span>
+                </div>
+                <div class="timer">
+                    <span id="timeLeft">30</span>s
+                </div>
             </div>
 
-            <!-- Welcome page -->
-            <div class="welcome-page">
-                <div class="greeting">
-                  <h1>Hello <span id="userName"></span>!</h1>  
+            <div class="question-container">
+                <h2 id="questionText">What does HTML stand for?</h2>
+            </div>
+
+            <div class="options-container" id="optionsContainer">
+                <!-- Options will be inserted here by JavaScript -->
+            </div>
+
+            <div class="feedback" id="feedback"></div>
+
+            <div class="quiz-controls">
+                <button id="quitButton" class="secondary-button">Quit Quiz</button>
+                <button id="nextButton" class="main-button">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Results Page -->
+        <div class="page" id="resultsPage">
+            <div class="results-content">
+                <h1>Congratulations, <span id="resultsUserName"></span>!</h1>
+                <div class="score-display">
+                    <h2>You scored <span id="correctAnswersCount">0</span> out of <span id="totalQuestionsCount">0</span></h2>
+                    <div class="score-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="score-circle-bg" cx="50" cy="50" r="45"></circle>
+                            <circle class="score-circle-progress" cx="50" cy="50" r="45" 
+                                    stroke-dasharray="283" stroke-dashoffset="0"></circle>
+                            <text class="score-text" x="50" y="55" text-anchor="middle"><tspan id="scorePercentage">0</tspan>%</text>
+                        </svg>
+                    </div>
                 </div>
-
-                <h1>Test Your Knowledge</h1>
-
-                <ul class="test-opt">
-                    <li data-test="html" class="opt">HTML</li>
-                    <li data-test="css" class="opt">CSS</li>
-                    <li data-test="javascript" class="opt">JavaScript</li>
-                </ul>
-
-                <div class="level-opt" id="levelOptions">
-                    <h2>Choose your level</h2>
-                    <ul>
-                        <li data-level="beginner" class="opt">Beginner</li>
-                        <li data-level="intermediate" class="opt">Intermediate</li>
-                        <li data-level="advanced" class="opt">Expert/Advanced</li>
-                    </ul>
-                    <button id="startQuizButton">Start Quiz</button>
+                <div class="performance-message" id="performanceMessage"></div>
+                <div class="result-buttons">
+                    <button id="tryAgainButton" class="main-button">Try Again</button>
+                    <button id="newQuizButton" class="secondary-button">New Quiz</button>
+                    <button id="homeButton" class="secondary-button">Back to Home</button>
                 </div>
-                            
             </div>
         </div>
     </div>
-    
-    <audio id="bgMusic." loop>
+
+    <audio id="bgMusic" loop>
         <source src="sounds/background.mp3" type="audio/mpeg">
     </audio>
 

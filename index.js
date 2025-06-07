@@ -1,32 +1,15 @@
-window.addEventListener("load", function () {
-  const bgMusic = document.getElementById("bgMusic");
-  const volumeSlider = document.getElementById("volumeSlider");
+//Calling the Elements
+const welcomePage = document.getElementById("welcomePage");
+const onboardingPage = document.getElementById("onboardingPage")
+const nameInput = document.getElementById("userNameInput")
 
-  bgMusic.volume = 0.5;
 
-  // Auto-play with error handling
-  function attemptPlay() {
-    bgMusic.play().catch((error) => {
-      document.body.addEventListener(
-        "click",
-        function enableAudio() {
-          bgMusic.play();
-          document.body.removeEventListener("click", enableAudio);
-        },
-        { once: true }
-      );
-    });
-  }
-
-  attemptPlay();
-
-  volumeSlider.addEventListener("input", function () {
-    bgMusic.volume = this.value;
-  });
-
-  document.addEventListener("visibilitychange", function () {
-    if (!document.hidden && bgMusic.paused) {
-      attemptPlay();
+//Function to call the WelcomePage
+function displayWelcomePage(nameInput) {
+    if (nameInput.value.trim().length === 0) {
+        console.log("Please enter your name")
+    } else {
+        welcomePage.style.display = "block";
+        onboardingPage.style.display = "none";
     }
-  });
-});
+}
